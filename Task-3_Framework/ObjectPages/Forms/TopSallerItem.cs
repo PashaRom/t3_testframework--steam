@@ -13,9 +13,5 @@ namespace App.ObjectPages.Forms
         public TopSallerItem(By locator, BaseElement topSallersRows) : base(locator) {
             this.ExplicitWaitExistFindElement(TimeSpan.FromSeconds(5));
         }
-
-        //public Price Price { 
-        //    get
-        //}
     }
 }

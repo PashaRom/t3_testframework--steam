@@ -63,16 +63,9 @@ namespace App.Framework.Elements
         public void Click(IWebElement item1, IWebElement subItem1) {
             try {
                 if (!this.IsNull) {
-                    //Actions action = new Actions(InstantWebDriver.WebDriver.GetWebDriver());
-                    //action.MoveToElement(menuItem);
-                    //action.Perform();
-                    //menuItem.Click();
-
                     Actions actionBuilder = new Actions(InstantWebDriver.WebDriver.GetWebDriver());
-                    actionBuilder.MoveToElement(item1).Perform();
-                    //By locator = By.id("clickElementID");
+                    actionBuilder.MoveToElement(item1).Perform();                    
                     subItem1.Click();
-
                 }
                 else
                     throw new Exception("Web element do not click because it has value null.");

@@ -75,8 +75,7 @@ namespace App.Framework.WebDriver
         }
 
         public void MoveToElement(IWebElement webElement) {
-            Actions act = new Actions(InstantWebDriver.WebDriver.webDriver);
-            //IWebElement browser = topMenu.GetMenuItem(StaticData.BrowseMenuItem.Name);
+            Actions act = new Actions(InstantWebDriver.WebDriver.webDriver);            
             act.MoveToElement(webElement);
             act.Build().Perform();
         }

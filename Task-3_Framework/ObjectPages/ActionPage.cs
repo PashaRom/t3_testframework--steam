@@ -39,17 +39,9 @@ namespace App.ObjectPages
                 return tabSelling;
             }
         }
-        public TopBlockSallerRows GetTopBlockSallerRows(By locator)
-        {
+        public TopBlockSallerRows GetTopBlockSallerRows(By locator) {
             TopBlockSallerRows topBlockSallerRows = new TopBlockSallerRows(locator);
-            //BaseElement baseElement = topBlockSallerRows.GetTopSallerRows()
-                //topBlockSallerRows.ExplicitWaitExistFindElement(TimeSpan.FromSeconds(5));
-                //if (topBlockSallerRows.IsNull)
-                //    AppLog.Error($"The element {Locator.TopBlockSallerRows} has not been found.");
-                //else
-                //    AppLog.Info($"The element {Locator.TopBlockSallerRows} has been found.");
-                return topBlockSallerRows;
-            //}
+            return topBlockSallerRows;
         }
         
     }

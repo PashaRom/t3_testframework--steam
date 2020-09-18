@@ -17,25 +17,19 @@ namespace App.ObjectPages
 {
     public class HomePage
     {
-
-        public bool IsOpen()
-        {
-            try
-            {                
-                InstantWebDriver.WebDriver.GoToUrl(ConfigurationManager.TestingUrl);
-                //WebDriverWait webDriverWait = InstantWebDriver.WebDriver.ExplicitWait(TimeSpan.FromSeconds(5));
+        public bool IsOpen() {
+            try {                
+                InstantWebDriver.WebDriver.GoToUrl(ConfigurationManager.TestingUrl);                
                 Span spanLogoHolder = new Span(By.XPath(Locator.SpanLogoHolder));
-                spanLogoHolder.ExplicitWaitExistFindElement(TimeSpan.FromSeconds(5));//webDriverWait.Until(ExpectedConditions.ElementExists(By.XPath(Locator.CheckLoadHomePage)));                
+                spanLogoHolder.ExplicitWaitExistFindElement(TimeSpan.FromSeconds(5));              
                 if (spanLogoHolder.IsNull) {
                     AppLog.Error("Home page has not opened.");
                     return false;
                 }                
-                AppLog.Info("Home page has opened.");
-                //SwitchLanguage();                
+                AppLog.Info("Home page has opened.");                                
                 return true;
             }            
-            catch (Exception ex)
-            {
+            catch (Exception ex) {
                 AppLog.Fatal(ex, "Error was thrown while HomePage was opening.");
                 return false;
             }
@@ -44,8 +38,7 @@ namespace App.ObjectPages
         public void SwitchLanguage() {
             try { 
                 string language = ConfigurationManager.Localization;
-                if (String.IsNullOrEmpty(language))
-                {
+                if (String.IsNullOrEmpty(language)) {
                     throw new Exception("Language must be to have value.");
                 }
                 InstantWebDriver.WebDriver.ExecuteScript($"ChangeLanguage('{language}'); return false;");
@@ -57,13 +50,8 @@ namespace App.ObjectPages
         }
 
         public void ClickButtonInstallSteam() {
-            try {
-                //IJavaScriptExecutor js = (IJavaScriptExecutor)InstantWebDriver.WebDriver.GetWebDriver();
-                //string pd = (String)js.ExecuteScript("return document.readyState");
-                //js.ExecuteScript(javaScript);
-                
-                Button installSteamButton = new Button(By.XPath(Locator.ButtonInstallSteamHomePage));
-                //installSteamButton.ExplicitWaitToBeClickableFindElement(By.XPath(Locator.ButtonInstallSteamHomePage), TimeSpan.FromSeconds(15));
+            try {                
+                Button installSteamButton = new Button(By.XPath(Locator.ButtonInstallSteamHomePage));                
                 installSteamButton.ImplicitWaitFindElement();
                 if (installSteamButton.IsNull)
                     AppLog.Error("Button \"Instal Steam\" has got value null.");
@@ -76,14 +64,10 @@ namespace App.ObjectPages
         }
 
         public void SelectGamesTopMenu() {
-            Menu topMenu = new Menu(By.XPath(Locator.TopMenu));
-            //topMenu.SelectMenuItems(StaticData.BrowseMenuItem.Locator);
+            Menu topMenu = new Menu(By.XPath(Locator.TopMenu));            
             topMenu.SelectMenuItems(StaticData.BrowseMenuItem.Locator);
             IWebElement browser = topMenu.GetMenuItem(StaticData.BrowseMenuItem.Name);
-            topMenu.MoveTo(browser);
-            //Actions act = new Actions(InstantWebDriver.WebDriver.GetWebDriver());            
-            //act.MoveToElement(browser);
-            //act.Build().Perform();
+            topMenu.MoveTo(browser);            
             topMenu.SelectSubMenuItoms(StaticData.ActionSubMenuItem.Locator);
             IWebElement action = topMenu.GetSubMenuItem(StaticData.ActionSubMenuItem.Name);            
             topMenu.Click(browser, action);

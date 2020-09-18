@@ -11,16 +11,7 @@ namespace App.Test
 {
     [TestFixture]
     class TC_1
-    {
-        //HomePage homePage;
-        //AboutPage aboutPage;
-
-        [OneTimeSetUp]
-        public void OneTimeSetUp() {
-            //homePage = new HomePage();
-            //AboutPage aboutPage
-        }
-
+    {  
         [Test]
         [Category("TC_1")]
         [Order(1)]
@@ -41,19 +32,10 @@ namespace App.Test
         [Test]
         [Category("TC_1")]
         [Order(3)]
-        public void DownLoadSteamAppFile() {
-            // HomePage homePage = new HomePage();
-            //homePage.IsOpen();
-            AboutPage aboutPage = new AboutPage();
-            //WorkWithFile.CheckDownloadDirectory();
-            aboutPage.ClickButtonInstallTeam();
-            //WorkWithFile.DownLoadFile();
+        public void DownLoadSteamAppFile() {            
+            AboutPage aboutPage = new AboutPage();           
+            aboutPage.ClickButtonInstallTeam();            
             Assert.IsTrue(aboutPage.IsFileDownload,"The file has not downloaded.");
         }
-
-        //[OneTimeTearDown]
-        //public void OneTimeTearDown() {
-        //    InstantWebDriver.WebDriver.Close();
-        //}
     }
 }

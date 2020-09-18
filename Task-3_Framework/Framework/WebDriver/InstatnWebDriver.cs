@@ -9,8 +9,7 @@ namespace App.Framework.WebDriver
 
         private static WebDriver webDriver = null;
 
-        public static WebDriver WebDriver
-        {
+        public static WebDriver WebDriver {
             get {
                 if (webDriver == null)
                 {

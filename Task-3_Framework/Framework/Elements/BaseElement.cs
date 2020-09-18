@@ -54,15 +54,12 @@ namespace App.Framework.Elements
             }
             catch(Exception ex) {
                 AppLog.Error(ex,$"Web element {Locator.ToString()} has not been found.");
-                //webElement = null;
             }
         }
 
-        public IWebElement ImplicitWaitFindChaildElement(By chaildLocator)
-        {
+        public IWebElement ImplicitWaitFindChaildElement(By chaildLocator) {
             IWebElement chaildWebElement = null;
-            try
-            {
+            try {
                 AppLog.Info($"Searching the child element {chaildLocator.ToString()} in the parent element {Locator.ToString()}");
                 chaildWebElement = webElement.FindElement(chaildLocator);
                 AppLog.Info($"The child element {chaildLocator.ToString()} in the parent element {Locator.ToString()} has been found.");
@@ -71,17 +68,14 @@ namespace App.Framework.Elements
             catch (Exception ex)
             {
                 AppLog.Error(ex, $"The child element {chaildLocator.ToString()} in the parent element {Locator.ToString()} has not been found.");
-                //webElement = null;
                 return chaildWebElement;
             }
 
         }
 
-        public IReadOnlyCollection<IWebElement> ImplicitWaitFindElements(By by)
-        {
+        public IReadOnlyCollection<IWebElement> ImplicitWaitFindElements(By by) {
             IReadOnlyCollection<IWebElement> childWebElements = null;
-            try
-            {
+            try {
                 AppLog.Info($"Searching element {by.ToString()}");
                 string sd = webElement.GetAttribute("id");
                 string sdf = webElement.GetAttribute("class");
@@ -93,18 +87,12 @@ namespace App.Framework.Elements
                     AppLog.Info($"Web elements { by.ToString()} has been found.");
                 return childWebElements;
             }
-            catch (Exception ex)
-            {
+            catch (Exception ex) {
                 AppLog.Error(ex, $"Web elements {by.ToString()} has not been found.");
-                //webElement = null;
                 return childWebElements;
             }
 
         }
-
-        //public void ImplicitWaitFindElements(By by) {
-        //AppLog.Info($"Searching element {by.ToString()}");
-        //}
 
         public void ExplicitWaitExistFindElement(TimeSpan timeSpan) {           
             try {
@@ -114,26 +102,20 @@ namespace App.Framework.Elements
             }
             catch(Exception ex) {
                 AppLog.Error(ex, $"Web element {Locator.ToString()} has not been existed.");
-                //webElement = null;
             }
         }
-        public void ExplicitWaitToBeClickableFindElement(By by, TimeSpan timeSpan)
-        {
-            try
-            {
+        public void ExplicitWaitToBeClickableFindElement(By by, TimeSpan timeSpan) {
+            try {
                 WebDriverWait webDriverWait = InstantWebDriver.WebDriver.ExplicitWait(timeSpan);
                 webElement = webDriverWait.Until(ExpectedConditions.ElementToBeClickable(by));
                 AppLog.Info($"Web element { by.ToString()} has been found.");
             }
-            catch (Exception ex)
-            {
+            catch (Exception ex) {
                 AppLog.Error(ex, $"Web element {by.ToString()} has not been existed.");
-                //webElement = null;
             }
         }
 
-        public bool MoveTo(IWebElement menuItem)
-        {
+        public bool MoveTo(IWebElement menuItem) {
             InstantWebDriver.WebDriver.MoveToElement(menuItem);
             return true;
         }
@@ -151,13 +133,10 @@ namespace App.Framework.Elements
                     action.MoveToElement(webElement);
                     action.Perform();
                     webElement.Click();
-                    //webElement.Click();
-
                 }
                 else
                     throw new Exception("Web element do not click because it has value null.");
-            }
-            
+            }            
             catch(Exception ex) {
                 AppLog.Error(ex, $"Error was to click");
             }
@@ -166,8 +145,7 @@ namespace App.Framework.Elements
         public void Clear() {
             webElement.Clear();
         }
-        public void SendKeys(string text)
-        {
+        public void SendKeys(string text) {
             webElement.SendKeys(text);
         }
         public void Submit() {

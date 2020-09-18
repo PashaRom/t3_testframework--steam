@@ -13,8 +13,7 @@ namespace App.Models
         public IWebElement WebElement { get; set; }
 
         public bool IsNull {
-            get
-            {
+            get {
                 if (OriginalPrice == 0 && FinalPrice == 0 && Discount == 0 && WebElement == null)
                     return true;
                 else
@@ -22,8 +21,7 @@ namespace App.Models
             }
         }
 
-        public override bool Equals(object obj)
-        {
+        public override bool Equals(object obj) {
             if (obj.GetType() != this.GetType())
                 return false;
             Price price = obj as Price;
@@ -33,12 +31,10 @@ namespace App.Models
                 return false;
         }
 
-        public static bool operator >(Price price1 , Price price2)
-        {
+        public static bool operator >(Price price1 , Price price2) {
             return price1.Discount > price2.Discount;
         }
-        public static bool operator <(Price price1, Price price2)
-        {
+        public static bool operator <(Price price1, Price price2) {
             return price1.Discount < price2.Discount;
         }
     }

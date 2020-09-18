@@ -12,8 +12,7 @@ namespace App.ObjectPages.Forms
             base.ExplicitWaitExistFindElement(TimeSpan.FromSeconds(5));
         }
 
-        public PurchasesGame GetPurchasesGame(By locator)
-        {
+        public PurchasesGame GetPurchasesGame(By locator) {
             return new PurchasesGame(locator, this);
         }
     }

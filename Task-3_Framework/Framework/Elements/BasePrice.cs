@@ -19,23 +19,16 @@ namespace App.Framework.Elements
             {
                 string strPrice = "0";
                 try {
-                    //string id = webElement.GetAttribute("class");
-                    //string h = webElement.GetAttribute("href");
-                    //string t = webElement.TagName;
                     strPrice = webElement.Text;
-                    //strPrice = webElement.GetAttribute("innerHTML");
-                    
                     if (String.IsNullOrEmpty(strPrice))
                         AppLog.Error($"The element \"{this.Locator}\" do not have a value.");
-                    else
-                    {
+                    else {
                         AppLog.Error($"The element \"{this.Locator}\" have got price {strPrice}.");
-
                     }
                     return strPrice;
                 }
                 catch(Exception ex){
-                    AppLog.Error($"The element \"{this.Locator}\" do not have a value.");
+                    AppLog.Error(ex,$"The element \"{this.Locator}\" do not have a value.");
                     return strPrice;
                 }
                 
@@ -50,7 +43,7 @@ namespace App.Framework.Elements
             }
             if (!String.IsNullOrEmpty(strPrice))
             {
-                string remStrPrice = null, transStrPrise;
+                string remStrPrice = null;
                 if (Regex.IsMatch(strPrice, @"USD$")) {
                     strPrice = strPrice.Remove(strPrice.Length-4, 3).Replace('.', ',');                    
                 }

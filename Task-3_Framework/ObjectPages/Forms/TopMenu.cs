@@ -7,11 +7,7 @@ using OpenQA.Selenium;
 namespace App.ObjectPages.Forms
 {
     public class TopMenu : Menu {
-
-        
         public TopMenu(By locator) :base(locator) {            
         }
-
-
     }
 }

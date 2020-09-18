@@ -28,8 +28,7 @@ namespace App.ObjectPages
                 buttonInstallTeam.ImplicitWaitFindElement();
                 if (buttonInstallTeam.IsNull)
                     throw new Exception("Button \"Install Team\" on \"About\" page has got value \"null\".");
-                //buttonInstallTeam.Click();                
-                return buttonInstallTeam;
+               return buttonInstallTeam;
             }
             catch (Exception ex)
             {
@@ -41,7 +40,6 @@ namespace App.ObjectPages
         public void ClickButtonInstallTeam() {
             Button buttonInstallTeam = GetButtonInstallTeam();
             try {
-                //buttonInstallTeam.ImplicitWaitFindElement(By.XPath(Locator.ButtonInstalLSteamAboutPage));
                 buttonInstallTeam.ImplicitWaitFindElement();
                 if (buttonInstallTeam.IsNull)
                     throw new Exception("Button \"Install Team\" on \"About\" page has got value \"null\".");
@@ -53,10 +51,8 @@ namespace App.ObjectPages
                 this.IsFileDownload = WorkWithFile.CheckDownloadFile(pathDownload, faleName,ConfigurationManager.LoopChekingFile,ConfigurationManager.IntervalChekingFile,ConfigurationManager.SizeFile);
 
             }
-            catch (Exception ex)
-            {
+            catch (Exception ex) {
                 AppLog.Error(ex, "Error has been clicked \"InstallTeam\" button on \"About\"");
-                //return buttonInstallTeam;
             }
         }
         public bool IsFileDownload { get; set; }        

@@ -34,18 +34,9 @@ namespace App.Utilits
                 using (fileStream = new FileStream(downloadPath, FileMode.Create, FileAccess.Write, FileShare.None)) {
                     await response.Content.CopyToAsync(fileStream);
                 }
-                    //return content.CopyToAsync(fileStream).ContinueWith(
-                    //    (copyTask) =>
-                    //    {
-                    //        fileStream.Close();
-                    //    });
-               
-                    if (fileStream != null)
-                    {
+                    if (fileStream != null){
                         fileStream.Close();
                     }
-
-                    
             }
             catch (Exception ex) {
                 AppLog.Fatal(ex, "Error has been Download file");
@@ -53,16 +44,12 @@ namespace App.Utilits
         }
         public static string CheckDownloadDirectory(string path) {
             string pathDownload = null;
-            try {
-                //if (path == null)
-                //    pathDownload = Directory.GetCurrentDirectory();
-                pathDownload = WorkWithFile.GetDownloadDirectory(path);//Path.GetFullPath(path);               
-                if (Directory.Exists(pathDownload))
-                {
+            try {                
+                pathDownload = WorkWithFile.GetDownloadDirectory(path);            
+                if (Directory.Exists(pathDownload)) {
                     AppLog.Info($"That path {pathDownload} exists already.");
                 }
-                else
-                {
+                else {
                     DirectoryInfo downloadingDirectory = Directory.CreateDirectory(pathDownload);
                     AppLog.Info($"The directory has been created successfully at {pathDownload}.");
                 }
@@ -84,8 +71,7 @@ namespace App.Utilits
 
         public static bool CheckDownloadFile(string path, string fileName, int loop, int interval, int sizeFile) {
             try {
-                string fullPath = $"{path}\\{fileName}";               
-                //int sizeFile = 1573568;
+                string fullPath = $"{path}\\{fileName}";
                 Thread.Sleep(interval);
                 for(int i = 0; i < loop; i++) {
                     FileInfo fileInfo = new FileInfo(fullPath);
