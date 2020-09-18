@@ -21,11 +21,11 @@
   },
   "localization": [
     {
-      "languadge": "english",
+      "name": "english",
       "isActive": true
     },
     {
-      "languadge": "russian",
+      "name": "russian",
       "isActive": false
     }
   ],

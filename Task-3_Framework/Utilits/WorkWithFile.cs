@@ -71,7 +71,7 @@ namespace App.Utilits
 
         public static bool CheckDownloadFile(string path, string fileName, int loop, int interval, int sizeFile) {
             try {
-                string fullPath = $"{path}\\{fileName}";
+                string fullPath = $"{path}{fileName}";
                 Thread.Sleep(interval);
                 for(int i = 0; i < loop; i++) {
                     FileInfo fileInfo = new FileInfo(fullPath);

@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions;
 using App.Framework.Configuration.Models;
 using App.Framework.Logging;
 using System.Collections.Generic;
@@ -101,11 +102,15 @@ namespace App.Framework.Configuration
                     List<Language> languages = new List<Language>();
                     var valuesSection = GetConfiguration.GetSection("localization");
                     foreach (IConfigurationSection section in valuesSection.GetChildren()) {
-                        string language = CheckIsNullValue(nameof(language), section.GetValue<string>("languadge"));
-                        string isActive = CheckIsNullValue(nameof(isActive), section.GetValue<string>("isActive"));
-                        if (language == null || isActive == null)
-                            break;
-                        languages.Add(new Language { Name = language, isActive = ConvertStringToBool(isActive) });    
+                        Language language = section.Get<Language>();
+                        language.Name = CheckIsNullValue(nameof(language.Name), language.Name);
+                        //string isActive = null;
+                        //language.isActive;// = CheckIsNullValue(nameof(language.isActive), language.isActive);
+                        if (String.IsNullOrEmpty(language.Name)) {
+                            AppLog.Error($"The param \"localization:name\" has value null or empty.");
+                            continue;                            
+                        }
+                        languages.Add(language);    
                     }
                     int countTrue = 0, countFalse = 0;
                     foreach (Language lang in languages) {
@@ -124,7 +129,7 @@ namespace App.Framework.Configuration
                     }
                 }
                 catch(Exception ex) {
-                    AppLog.Fatal(ex, "Error was read languadge from testconfig file.");
+                    AppLog.Fatal(ex, "The error was appeared during to read language param from testconfig file.");
                     return null;
                 }               
                 return null;
@@ -135,11 +140,11 @@ namespace App.Framework.Configuration
             get {
                 string loopChekingFile = CheckIsNullValue(nameof(loopChekingFile), GetConfiguration["checkingDownloadFile:loopCheking"]);
                 if (loopChekingFile != null) {
-                    AppLog.Info($"Param checkingDownloadFile:loopCheking has been read.");
+                    AppLog.Info($"The param checkingDownloadFile:loopCheking has been read.");
                     return Convert.ToInt32(loopChekingFile);
                 }
                 else
-                    AppLog.Error($"Param checkingDownloadFile:loopCheking has not been read.");
+                    AppLog.Error($"The param checkingDownloadFile:loopCheking has not been read.");
                 return 0;
             }
         }
